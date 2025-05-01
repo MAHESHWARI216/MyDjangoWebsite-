@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Welcome to My Blog{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="jumbotron text-center bg-light p-5 rounded">
+        <h1 class="display-4">Welcome to My Blog! 🚀</h1>
+        <p class="lead">Read exciting articles, tutorials, and stories written by me!</p>
+        <hr class="my-4">
+        <a class="btn btn-primary btn-lg" href="{% url 'blog_list' %}" role="button">Explore Blogs</a>
+    </div>
+</div>
+{% endblock %}
+
