@@ -11,6 +11,13 @@
                 <img src="{{ blog.image.url }}" class="img-fluid mb-4" alt="{{ blog.title }}">
             {% endif %}
 
+            {% if blog.video %}
+                <video width="100%" height="auto" controls class="mb-4">
+                    <source src="{{ blog.video.url }}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            {% endif %}
+
             <h1 class="mb-3">{{ blog.title }}</h1>
             <p class="text-muted">Posted on {{ blog.created_at }}</p>
 
@@ -24,6 +31,7 @@
     </div>
 </div>
 {% endblock %}
+
 
 
 

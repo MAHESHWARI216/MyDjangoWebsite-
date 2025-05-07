@@ -2,6 +2,7 @@
 
 # Create your views here.
 from django.shortcuts import render
+from django.shortcuts import get_object_or_404
 from django.utils import timezone
 from .forms import ContactForm
 from django.http import HttpResponseRedirect
@@ -39,8 +40,16 @@ def blog_list(request):
     return render(request, 'blog_list.html', {'blogs': blogs})
 
 # Blog Detail Page
-def blog_detail(request, blog_id):
-    blog = BlogPost.objects.get(id=blog_id)
+def blog_detail(request, pk):
+    blog = get_object_or_404(BlogPost, pk=pk)
     return render(request, 'blog_detail.html', {'blog': blog})
 
-
+def create_blog_post(request):
+    if request.method == 'POST':
+        form = BlogPostForm(request.POST, request.FILES)  # <-- important!
+        if form.is_valid():
+            form.save()
+            return redirect('blog_list')
+    else:
+        form = BlogPostForm()
+    return render(request, 'blog_form.html', {'form': form})
